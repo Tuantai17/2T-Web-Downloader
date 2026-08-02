@@ -1,8 +1,16 @@
 # 2T Web Downloader
 
-Ứng dụng web tải video hoặc trích xuất âm thanh từ URL, dùng **React + TypeScript** và **FastAPI + yt-dlp + FFmpeg**.
+[![License: MIT](https://img.shields.io/badge/License-MIT-f5c542.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 
-2T Web Downloader phân tích liên kết, hiển thị metadata, cho chọn chất lượng và theo dõi tiến độ tải. Ứng dụng có giao diện Việt/Anh, sáng/tối và hai chế độ lưu file.
+Ứng dụng web mã nguồn mở để tải video hoặc trích xuất âm thanh từ URL, sử dụng **React + TypeScript** và **FastAPI + yt-dlp + FFmpeg**.
+
+2T Web Downloader phân tích liên kết, hiển thị metadata, cho phép chọn chất lượng và theo dõi tiến độ tải. Ứng dụng có giao diện Việt/Anh, chế độ sáng/tối và hai chế độ lưu file dành cho máy cá nhân hoặc máy chủ.
+
+- **Repository:** <https://github.com/Tuantai17/2T-Web-Downloader>
+- **License:** [MIT](LICENSE)
 
 > **Lưu ý pháp lý:** Chỉ tải nội dung bạn sở hữu hoặc được phép tải. Người dùng chịu trách nhiệm tuân thủ bản quyền, điều khoản nền tảng và pháp luật địa phương.
 
@@ -16,9 +24,8 @@
 - [Cấu hình](#cấu-hình)
 - [Khởi chạy và sử dụng](#khởi-chạy-và-sử-dụng)
 - [API](#api)
+- [Kiểm tra và build](#kiểm-tra-và-build)
 - [Giới hạn](#giới-hạn)
-- [Khắc phục sự cố](#khắc-phục-sự-cố)
-- [Bảo mật](#bảo-mật)
 
 ## Tính năng
 
@@ -38,7 +45,7 @@
 
 ### Chưa triển khai
 
-Một số tài liệu cũ trong `docs/` mô tả mục tiêu thiết kế, không phải chức năng hiện có. Source hiện tại chưa có tải hàng loạt, pause/resume/cancel, lịch sử database, WebSocket, đăng nhập/API key hoặc API cập nhật cấu hình. Frontend theo dõi task bằng polling mỗi giây.
+Các chức năng tải hàng loạt, pause/resume/cancel, lịch sử database, WebSocket, đăng nhập/API key và API cập nhật cấu hình chưa có trong source hiện tại. Frontend theo dõi task bằng polling mỗi giây.
 
 ## Nền tảng hỗ trợ
 
@@ -74,26 +81,27 @@ graph LR
 ## Cấu trúc và công nghệ
 
 ```text
-2T_Web-Downloader/
-├── README.md
+2T-Web-Downloader/
+├── .gitignore
+├── LICENSE                       # Giấy phép MIT
+├── README.md                     # Tài liệu chính
 ├── backend/
-│   ├── .env.example
-│   ├── requirements.txt
-│   ├── alembic/                 # Skeleton migration cũ
+│   ├── .env.example              # Mẫu biến môi trường
+│   ├── requirements.txt          # Dependency Python
+│   ├── alembic/                  # Skeleton migration cũ
 │   └── app/
-│       ├── main.py              # FastAPI và endpoint
-│       ├── config.py            # Cấu hình môi trường
-│       ├── schemas.py           # Pydantic schema
-│       └── engine/downloader.py # yt-dlp, FFmpeg, progress
-├── frontend/
-│   ├── package.json
-│   └── src/
-│       ├── App.tsx              # API flow và polling
-│       ├── config.ts            # API base URL
-│       ├── i18n.ts              # Đa ngôn ngữ
-│       ├── components/
-│       └── locales/
-└── docs/                        # Thiết kế và báo cáo lịch sử
+│       ├── main.py               # FastAPI và endpoint
+│       ├── config.py             # Cấu hình môi trường
+│       ├── schemas.py            # Pydantic schema
+│       └── engine/downloader.py  # yt-dlp, FFmpeg, progress
+└── frontend/
+    ├── package.json              # Dependency và npm scripts
+    └── src/
+        ├── App.tsx               # API flow và polling
+        ├── config.ts             # API base URL
+        ├── i18n.ts               # Đa ngôn ngữ
+        ├── components/           # Các thành phần giao diện
+        └── locales/              # Bản dịch Việt/Anh
 ```
 
 **Frontend:** React 19, TypeScript, Vite 8, Tailwind CSS 4, Framer Motion, Lucide, i18next, Embla Carousel và OXLint.
@@ -119,7 +127,7 @@ pip install python-dotenv imageio-ffmpeg
 Copy-Item .env.example .env -ErrorAction SilentlyContinue
 ```
 
-`python-dotenv` được source import và `imageio-ffmpeg` dùng để tìm FFmpeg, nhưng hai gói chưa có trong `requirements.txt`, vì vậy cần cài thêm.
+`python-dotenv` được source import trực tiếp và `imageio-ffmpeg` được dùng để tự tìm FFmpeg. Hai gói chưa được khai báo trong `requirements.txt`, do đó lệnh cài đặt ở trên bổ sung chúng riêng. Đây là điểm cần đồng bộ trong phiên bản tiếp theo.
 
 ### Frontend
 
@@ -286,66 +294,3 @@ Build tạo `frontend/dist`. Kiểm tra backend qua `/api/settings` hoặc Swagg
 - Route file cần gia cố chống path traversal trước khi public.
 - yt-dlp và website nguồn thay đổi thường xuyên.
 
-## Khắc phục sự cố
-
-### Không kết nối backend
-
-```powershell
-Invoke-RestMethod http://localhost:8000/api/settings
-Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue
-```
-
-Kiểm tra backend, firewall, port và `API_BASE`.
-
-### Thiếu dotenv hoặc FFmpeg
-
-```powershell
-pip install python-dotenv imageio-ffmpeg
-```
-
-Restart backend và xem `ffmpeg_available` ở `/api/settings`.
-
-### URL không phân tích được
-
-```powershell
-python -m pip install --upgrade yt-dlp
-```
-
-Kiểm tra URL công khai, giới hạn vùng/tuổi, đăng nhập, cookie và DRM.
-
-### File không xuất hiện
-
-Kiểm tra `DOWNLOAD_DIR`, quyền ghi/xóa, dung lượng ổ đĩa và log backend. Production xóa file sau khi phục vụ là hành vi dự kiến.
-
-### Video không tiếng
-
-Nguồn có thể cung cấp video-only. Cài FFmpeg để ghép audio.
-
-## Bảo mật
-
-Source phù hợp nhất cho local/mạng tin cậy. Trước khi public:
-
-1. Giới hạn CORS thay vì `*`.
-2. Thêm xác thực và rate limiting.
-3. Kiểm tra URL để giảm SSRF và chặn IP nội bộ nếu cần.
-4. Chuẩn hóa filename chống path traversal.
-5. Dùng worker queue bền vững, timeout và quota ổ đĩa.
-6. Chạy bằng user quyền tối thiểu và reverse proxy HTTPS.
-7. Không commit `.env`, file tải, `venv`, `node_modules`, `dist`.
-8. Ghim/cập nhật dependency và dọn file định kỳ.
-
-## Tài liệu bổ sung
-
-[`docs/`](docs/) chứa kiến trúc, roadmap và báo cáo lịch sử. Khi khác biệt, ưu tiên source hiện tại, sau đó README này, rồi tài liệu cũ.
-
-- [`docs/DOWNLOAD_FLOW.md`](docs/DOWNLOAD_FLOW.md)
-- [`docs/MODULES.md`](docs/MODULES.md)
-- [`docs/ROADMAP.md`](docs/ROADMAP.md)
-
-## Đóng góp
-
-Giữ Pydantic schema và TypeScript interface đồng bộ; cập nhật README khi API/config thay đổi; chạy lint/build; thêm test backend phù hợp; không commit dependency, secret hoặc file tải.
-
-## Miễn trừ trách nhiệm
-
-Dự án là công cụ cho nội dung hợp pháp. Không khuyến khích vi phạm bản quyền, vượt DRM, truy cập trái phép hoặc vi phạm điều khoản nền tảng. Hãy xin phép chủ sở hữu trước khi tải hoặc phân phối lại.
