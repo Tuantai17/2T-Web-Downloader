@@ -1,0 +1,11 @@
+import enum
+
+class DownloadStatus(str, enum.Enum):
+    QUEUED = "QUEUED"
+    PREPARING = "PREPARING"
+    DOWNLOADING = "DOWNLOADING"
+    MERGING = "MERGING"
+    POST_PROCESSING = "POST_PROCESSING"
+    COMPLETED = "COMPLETED"
+    FAILED = "FAILED"
+    CANCELLED = "CANCELLED"

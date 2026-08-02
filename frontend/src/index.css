@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+@layer base {
+  :root {
+    --background: #FAFAFA;
+    --foreground: #09090B;
+    
+    --primary: #7C3AED;
+    --primary-foreground: #FAFAFA;
+    
+    --secondary: #A855F7;
+    --secondary-foreground: #FAFAFA;
+    
+    --card: #FFFFFF;
+    --card-foreground: #09090B;
+    
+    --border: rgba(0, 0, 0, 0.08);
+    --input: rgba(0, 0, 0, 0.05);
+  }
+
+  .dark {
+    --background: #09090B;
+    --foreground: #FAFAFA;
+    
+    --primary: #7C3AED;
+    --primary-foreground: #FAFAFA;
+    
+    --secondary: #A855F7;
+    --secondary-foreground: #FAFAFA;
+    
+    --card: #111827;
+    --card-foreground: #FAFAFA;
+    
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(255, 255, 255, 0.05);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30;
+  }
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
