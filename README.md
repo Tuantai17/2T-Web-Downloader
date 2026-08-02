@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 
-Ứng dụng web mã nguồn mở để tải video hoặc trích xuất âm thanh từ URL, sử dụng **React + TypeScript** và **FastAPI + yt-dlp + FFmpeg**.
+**2T Web Downloader** là công cụ tải video và âm thanh trực tuyến nhanh chóng, cho phép người dùng phân tích liên kết, lựa chọn chất lượng phù hợp và lưu nội dung về thiết bị một cách thuận tiện.
 
 2T Web Downloader phân tích liên kết, hiển thị metadata, cho phép chọn chất lượng và theo dõi tiến độ tải. Ứng dụng có giao diện Việt/Anh, chế độ sáng/tối và hai chế độ lưu file dành cho máy cá nhân hoặc máy chủ.
 
@@ -49,9 +49,17 @@ Các chức năng tải hàng loạt, pause/resume/cancel, lịch sử database,
 
 ## Nền tảng hỗ trợ
 
-Khả năng hỗ trợ website đến từ [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), gồm YouTube và nhiều nền tảng khác mà phiên bản yt-dlp đang cài nhận diện.
+2T Web Downloader có thể phân tích và tải nội dung công khai từ nhiều nền tảng phổ biến, bao gồm:
 
-Kết quả phụ thuộc URL, phiên bản yt-dlp, khu vực, trạng thái công khai và thay đổi từ website. Nội dung DRM, riêng tư, trả phí hoặc cần cookie thường không hoạt động với cấu hình hiện tại.
+| Nhóm | Nền tảng tiêu biểu |
+|---|---|
+| Video | YouTube, Vimeo, Dailymotion, Rumble, Bilibili |
+| Mạng xã hội | Facebook, Instagram, TikTok, X (Twitter), Reddit |
+| Livestream và gaming | Twitch, Kick, Streamable |
+| Âm thanh | SoundCloud, Bandcamp, Mixcloud |
+| Truyền thông | BBC, CNN và nhiều website tin tức có video công khai |
+
+Khả năng tải phụ thuộc vào URL cụ thể và nội dung phải có quyền truy cập hợp lệ; một số video riêng tư, trả phí, giới hạn khu vực hoặc được bảo vệ bằng DRM có thể không tải được.
 
 ## Cách hoạt động
 
